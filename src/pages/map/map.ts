@@ -25,6 +25,7 @@ export class MapPage {
 	ionViewDidLoad() {
 		
 		this.platform.ready().then(() => {
+
         	let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement);
         	let locationsLoaded = this.locations.load();
 
@@ -33,9 +34,9 @@ export class MapPage {
                 locationsLoaded
             ]).then((result) => {
  
+                // build map once all promises have been resolved
                 let locations = result[1];
- 
-                for(let location of locations){
+                for (let location of locations){
                     this.maps.addMarker(location.latitude, location.longitude);
                 }
  
